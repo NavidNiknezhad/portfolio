@@ -424,8 +424,13 @@ section {
   color: #1f5297;
 }
 
+.frameworks .badge {
+  padding:10px;
+  margin:5px;
+  font-size:14px;
+}
 /*--------------------------------------------------------------
-# Akills
+# Skills
 --------------------------------------------------------------*/
 .skills .progress {
   height: 60px;
@@ -459,6 +464,19 @@ section {
   height: 10px;
   transition: 0.9s;
   background-color: #149ddd;
+}
+
+.delivery .col-lg-2 {
+  font-weight:600;
+  padding:15px;
+  border-bottom:2px solid #ccc;
+}
+
+/*--------------------------------------------------------------
+# Consulting
+--------------------------------------------------------------*/
+.consulting ul li {
+  margin-bottom: 8px;
 }
 
 /*--------------------------------------------------------------
