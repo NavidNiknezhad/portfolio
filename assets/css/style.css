@@ -424,7 +424,11 @@ section {
   color: #1f5297;
 }
 
-.frameworks .badge {
+.frameworks {
+
+} 
+
+.badge {
   padding:10px;
   margin:5px;
   font-size:14px;
