@@ -425,7 +425,7 @@ section {
 }
 
 .frameworks {
-
+padding-bottom: 30px;
 } 
 
 .badge {
@@ -481,6 +481,26 @@ section {
 --------------------------------------------------------------*/
 .consulting ul li {
   margin-bottom: 8px;
+}
+
+/*--------------------------------------------------------------
+# Selected Engagement Highlights
+--------------------------------------------------------------*/
+.engagement-item {
+  background:#fff;
+  padding:25px;
+  border-radius:8px;
+  margin-bottom:20px;
+  box-shadow:0 0 20px rgba(0,0,0,0.05);
+}
+
+.engagement-item h4 {
+  font-size:18px;
+  font-weight:600;
+}
+
+.engagement-item ul li {
+  margin-bottom:8px;
 }
 
 /*--------------------------------------------------------------
