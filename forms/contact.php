@@ -1,42 +1,44 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+/**
+ * Legacy contact handler (optional for PHP hosting).
+ *
+ * NOTE:
+ * The site currently uses FormSubmit AJAX from the frontend for static hosting.
+ * This file is kept as a fallback for environments where PHP is enabled.
+ */
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@navidniknezhad.me';
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  http_response_code(405);
+  echo 'Method Not Allowed';
+  exit;
+}
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php')) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+$to = 'contact@navidniknezhad.me';
+$name = trim($_POST['name'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$subject = trim($_POST['subject'] ?? 'Portfolio Contact Form');
+$message = trim($_POST['message'] ?? '');
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+if ($name === '' || $email === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  http_response_code(400);
+  echo 'Invalid input.';
+  exit;
+}
 
-   //Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  
-  $contact->smtp = array(
-    'host' => 'hostinger.com',
-    'username' => 'admin@navidniknezhad.me',
-    'password' => 'NAH943*#aes',
-    'port' => '587'
-  );
-  
+$safe_subject = preg_replace('/[\r\n]+/', ' ', $subject);
+$headers = "From: {$name} <{$email}>\r\n";
+$headers .= "Reply-To: {$email}\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+$body = "New message from portfolio contact form\n\n";
+$body .= "Name: {$name}\n";
+$body .= "Email: {$email}\n";
+$body .= "Subject: {$safe_subject}\n\n";
+$body .= "Message:\n{$message}\n";
 
-  echo $contact->send();
-  
-?>
+if (@mail($to, $safe_subject, $body, $headers)) {
+  echo 'OK';
+} else {
+  http_response_code(500);
+  echo 'Unable to send email.';
+}
