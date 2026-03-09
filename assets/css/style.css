@@ -347,14 +347,13 @@ section {
 .about .content ul li {
   margin-bottom: 20px;
   display: flex;
-  align-items: centre;
+  align-items: flex-start;
 }
 
 .about .content ul strong {
   margin-right: 10px;
   display: flex;
-  align-items: top;
-    text-align: left;
+  text-align: left;
 }
 
 .about .content ul span {
@@ -492,6 +491,7 @@ padding-bottom: 30px;
   border-radius:8px;
   margin-bottom:20px;
   box-shadow:0 0 20px rgba(0,0,0,0.05);
+  height: 100%;
 }
 
 .engagement-item h4 {
@@ -562,6 +562,38 @@ padding-bottom: 30px;
   top: 0;
   background: #fff;
   border: 2px solid #1f5297;
+}
+
+.professional-experience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 992px) {
+  .professional-experience-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .professional-experience-grid .resume-item {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .about .content h3 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .about .content ul li {
+    margin-bottom: 14px;
+  }
+
+  .engagement-item {
+    padding: 18px;
+  }
 }
 
 /*--------------------------------------------------------------
