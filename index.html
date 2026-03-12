@@ -9,6 +9,8 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <script>document.documentElement.classList.add('js');</script>
+
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -36,6 +38,18 @@
 </head>
 
 <body>
+
+  <div id="site-loader" class="site-loader" aria-hidden="true">
+    <div class="loader-cube" aria-label="Loading">
+      <div class="face front">NN</div>
+      <div class="face back">NN</div>
+      <div class="face right">OT</div>
+      <div class="face left">CY</div>
+      <div class="face top">SEC</div>
+      <div class="face bottom">NET</div>
+    </div>
+    <div class="loader-text">Loading portfolio</div>
+  </div>
 
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -466,13 +480,17 @@
           </p>
         </div>
 
-        <div class="row">
+        <div class="row g-4 resume-columns">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Executive Profile</h3>
+            <div class="resume-column-card">
+              <div id="resume-primary-content" class="resume-column-content is-collapsed">
+                <h3 class="resume-title">Executive Profile</h3>
             <div class="resume-item pb-0">
               <h4>Navid Niknezhad</h4>
               <p><em>Security & Networking Operations and OT Cybersecurity Engineering Consultant delivering governance, engineering assurance, and secure infrastructure outcomes across regulated environments. Experienced in contractor-led cybersecurity delivery spanning risk management, network security engineering, compliance alignment, and operational security lifecycle support.</em></p>
             </div>
+
+                <h3 class="resume-title">Professional Experience</h3>
           </div>
       
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
@@ -550,6 +568,17 @@
               </ul>
             </div>
             </div>
+              </div>
+              <div class="resume-column-actions">
+                <button type="button" class="resume-toggle-btn" data-target="resume-primary-content" aria-expanded="false">See more</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="resume-column-card">
+              <div id="resume-secondary-content" class="resume-column-content is-collapsed">
+                <h3 class="resume-title">Leadership Experience</h3>
 
             <h3 class="resume-title">Leadership Experience</h3>
             <div class="resume-item" data-aos="fade-up" data-aos-delay="500">
@@ -612,10 +641,14 @@
                 <li><b>Advanced Programming:</b> Developed advanced programming skills in Information Technology, completing multiple projects and earning recognition from professors</li>
               </ul>
             </div>
+              </div>
+              <div class="resume-column-actions">
+                <button type="button" class="resume-toggle-btn" data-target="resume-secondary-content" aria-expanded="false">See more</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </section><!-- End Resume Section -->
 
     <!-- ======= Portfolio Section ======= -->

@@ -254,6 +254,19 @@
   });
 
 
+
+  /**
+   * Initial page loader
+   */
+  const siteLoader = select('#site-loader');
+  if (siteLoader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        siteLoader.classList.add('is-hidden');
+      }, 450);
+    });
+  }
+
   /**
    * Contact form submission (FormSubmit AJAX)
    */
@@ -294,6 +307,28 @@
       } finally {
         loading.classList.remove('d-block');
       }
+    });
+  }
+
+
+  /**
+   * Resume column expand/collapse
+   */
+  const resumeToggles = select('.resume-toggle-btn', true);
+  if (resumeToggles.length) {
+    resumeToggles.forEach((button) => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (!target) {
+          return;
+        }
+
+        const expanded = target.classList.toggle('is-expanded');
+        target.classList.toggle('is-collapsed', !expanded);
+        this.setAttribute('aria-expanded', String(expanded));
+        this.textContent = expanded ? 'See less' : 'See more';
+      });
     });
   }
 
