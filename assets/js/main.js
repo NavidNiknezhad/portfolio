@@ -253,6 +253,85 @@
     })
   });
 
+
+
+  /**
+   * Initial page loader
+   */
+  const siteLoader = select('#site-loader');
+  if (siteLoader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        siteLoader.classList.add('is-hidden');
+      }, 450);
+    });
+  }
+
+  /**
+   * Contact form submission (FormSubmit AJAX)
+   */
+  const contactForm = select('#contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const loading = this.querySelector('.loading');
+      const errorMessage = this.querySelector('.error-message');
+      const sentMessage = this.querySelector('.sent-message');
+
+      loading.classList.add('d-block');
+      errorMessage.classList.remove('d-block');
+      sentMessage.classList.remove('d-block');
+      errorMessage.textContent = '';
+
+      try {
+        const response = await fetch(this.action, {
+          method: 'POST',
+          body: new FormData(this),
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || result.success === 'false') {
+          throw new Error(result.message || 'Unable to send your message right now. Please try again shortly.');
+        }
+
+        sentMessage.classList.add('d-block');
+        this.reset();
+      } catch (error) {
+        errorMessage.textContent = error.message;
+        errorMessage.classList.add('d-block');
+      } finally {
+        loading.classList.remove('d-block');
+      }
+    });
+  }
+
+
+  /**
+   * Resume column expand/collapse
+   */
+  const resumeToggles = select('.resume-toggle-btn', true);
+  if (resumeToggles.length) {
+    resumeToggles.forEach((button) => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (!target) {
+          return;
+        }
+
+        const expanded = target.classList.toggle('is-expanded');
+        target.classList.toggle('is-collapsed', !expanded);
+        this.setAttribute('aria-expanded', String(expanded));
+        this.textContent = expanded ? 'See less' : 'See more';
+      });
+    });
+  }
+
   /**
    * Initiate Pure Counter 
    */

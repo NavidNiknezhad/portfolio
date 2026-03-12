@@ -32,6 +32,84 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
+
+/*--------------------------------------------------------------
+# 3D Loader
+--------------------------------------------------------------*/
+.site-loader {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  background: radial-gradient(circle at center, #0f294f, #050d18 70%);
+  z-index: 10000;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.js .site-loader {
+  display: flex;
+  animation: loaderAutoHide 0.35s ease 3.5s forwards;
+}
+
+.site-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-cube {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spinCube 2.6s linear infinite;
+}
+
+.loader-cube .face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  background: rgba(20, 157, 221, 0.18);
+  backdrop-filter: blur(2px);
+}
+
+.loader-cube .front { transform: translateZ(35px); }
+.loader-cube .back { transform: rotateY(180deg) translateZ(35px); }
+.loader-cube .right { transform: rotateY(90deg) translateZ(35px); }
+.loader-cube .left { transform: rotateY(-90deg) translateZ(35px); }
+.loader-cube .top { transform: rotateX(90deg) translateZ(35px); }
+.loader-cube .bottom { transform: rotateX(-90deg) translateZ(35px); }
+
+.loader-text {
+  color: #fff;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+@keyframes spinCube {
+  from { transform: rotateX(-25deg) rotateY(0deg); }
+  to { transform: rotateX(-25deg) rotateY(360deg); }
+}
+
+@keyframes loaderAutoHide {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -347,14 +425,13 @@ section {
 .about .content ul li {
   margin-bottom: 20px;
   display: flex;
-  align-items: centre;
+  align-items: flex-start;
 }
 
 .about .content ul strong {
   margin-right: 10px;
   display: flex;
-  align-items: top;
-    text-align: left;
+  text-align: left;
 }
 
 .about .content ul span {
@@ -492,6 +569,7 @@ padding-bottom: 30px;
   border-radius:8px;
   margin-bottom:20px;
   box-shadow:0 0 20px rgba(0,0,0,0.05);
+  height: 100%;
 }
 
 .engagement-item h4 {
@@ -562,6 +640,77 @@ padding-bottom: 30px;
   top: 0;
   background: #fff;
   border: 2px solid #1f5297;
+}
+
+.resume-column-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.resume-column-content {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.resume-column-content.is-collapsed {
+  max-height: 900px;
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+}
+
+.resume-column-content.is-expanded {
+  max-height: 10000px;
+  mask-image: none;
+}
+
+.resume-column-actions {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.resume-toggle-btn {
+  border: none;
+  background: #149ddd;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.resume-toggle-btn:hover {
+  background: #0f88bf;
+}
+
+@media (min-width: 992px) {
+  .resume-column-content.is-collapsed {
+    max-height: 980px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about .content h3 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .about .content ul li {
+    margin-bottom: 14px;
+  }
+
+  .engagement-item {
+    padding: 18px;
+  }
+
+  .resume-column-card {
+    padding: 16px;
+  }
+
+  .resume-column-content.is-collapsed {
+    max-height: 720px;
+  }
 }
 
 /*--------------------------------------------------------------
