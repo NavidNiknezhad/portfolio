@@ -31,6 +31,7 @@ if ($clean_name === '' || $email === '' || $message === '' || !filter_var($email
 }
 
 if (!preg_match('/^[\p{L}\p{N} .\'-]{2,120}$/u', $clean_name)) {
+if ($name === '' || $email === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
   http_response_code(400);
   echo 'Invalid input.';
   exit;
@@ -38,11 +39,14 @@ if (!preg_match('/^[\p{L}\p{N} .\'-]{2,120}$/u', $clean_name)) {
 
 $safe_subject = preg_replace('/[\r\n]+/', ' ', $clean_subject);
 $headers = "From: {$clean_name} <{$email}>\r\n";
+$safe_subject = preg_replace('/[\r\n]+/', ' ', $subject);
+$headers = "From: {$name} <{$email}>\r\n";
 $headers .= "Reply-To: {$email}\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 $body = "New message from portfolio contact form\n\n";
 $body .= "Name: {$clean_name}\n";
+$body .= "Name: {$name}\n";
 $body .= "Email: {$email}\n";
 $body .= "Subject: {$safe_subject}\n\n";
 $body .= "Message:\n{$message}\n";

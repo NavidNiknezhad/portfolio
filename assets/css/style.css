@@ -642,6 +642,12 @@ padding-bottom: 30px;
   border: 2px solid #1f5297;
 }
 
+.professional-experience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
 .resume-column-card {
   background: #fff;
   border-radius: 12px;
@@ -687,6 +693,17 @@ padding-bottom: 30px;
 @media (min-width: 992px) {
   .resume-column-content.is-collapsed {
     max-height: 980px;
+  gap: 24px;
+}
+
+@media (min-width: 992px) {
+  .professional-experience-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .professional-experience-grid .resume-item {
+    margin-top: 0;
   }
 }
 
