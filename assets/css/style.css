@@ -513,6 +513,13 @@ section {
   font-size: 34px;
   line-height: 1;
   color: #149ddd;
+  margin-top: 24px;
+  padding: 16px 18px;
+  border-left: 4px solid #149ddd;
+  background: #ffffff;
+  border-radius: 8px;
+  line-height: 1.7;
+  color: #1d3557;
 }
 
 @media (max-width: 991px) {
