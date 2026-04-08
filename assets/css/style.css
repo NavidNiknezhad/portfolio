@@ -143,6 +143,34 @@ h6 {
   opacity: 1;
 }
 
+.quick-contact-bar {
+  position: fixed;
+  right: 15px;
+  bottom: 70px;
+  z-index: 995;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quick-contact-bar a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #0f766e;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.quick-contact-bar a:hover {
+  background: #149ddd;
+  color: #fff;
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -209,6 +237,17 @@ h6 {
 }
 
 @media (max-width: 1199px) {
+  .quick-contact-bar {
+    right: 12px;
+    bottom: 62px;
+  }
+
+  .quick-contact-bar a {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
   #header {
     left: -300px;
   }
@@ -327,6 +366,41 @@ h6 {
   min-width: 300px;
 }
 
+.hero-cta-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.hero-cta-group .btn {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.hero-btn-primary {
+  background: #149ddd;
+  color: #fff;
+}
+
+.hero-btn-primary:hover {
+  background: #0d7eb3;
+  color: #fff;
+}
+
+.hero-btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  background: rgba(4, 11, 20, 0.35);
+}
+
+.hero-btn-secondary:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
 #hero h1 {
   margin: 0 0 10px 0;
   font-size: 64px;
@@ -366,6 +440,15 @@ h6 {
     line-height: 24px;
     margin-bottom: 30px;
   }
+
+  .hero-cta-group {
+    gap: 10px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -378,6 +461,34 @@ section {
 
 .section-bg {
   background: #f5f8fd;
+}
+
+.impact-card {
+  height: 100%;
+  border-radius: 12px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(15, 41, 79, 0.08);
+  border-top: 4px solid #149ddd;
+}
+
+.impact-kpi {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #149ddd;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.impact-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.impact-card p {
+  margin: 0;
 }
 
 .section-title {
@@ -838,6 +949,36 @@ padding-bottom: 30px;
 --------------------------------------------------------------*/
 .portfolio .portfolio-item {
   margin-bottom: 30px;
+}
+
+.portfolio .portfolio-toolbar {
+  margin-bottom: 18px;
+}
+
+.portfolio .portfolio-toolbar .form-control {
+  border-radius: 999px;
+  border: 1px solid #dce3eb;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 11px 16px;
+}
+
+.portfolio .portfolio-summary {
+  text-align: center;
+  color: #45505b;
+  margin-top: 10px;
+  min-height: 22px;
+}
+
+.portfolio .portfolio-empty-state {
+  margin: 6px auto 0;
+  max-width: 560px;
+  text-align: center;
+  background: #fff;
+  border: 1px dashed #9fb4ca;
+  color: #45505b;
+  border-radius: 12px;
+  padding: 14px 16px;
 }
 
 .portfolio #portfolio-flters {

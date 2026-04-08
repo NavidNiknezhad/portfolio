@@ -169,6 +169,51 @@
       });
 
       let portfolioFilters = select('#portfolio-flters li', true);
+      let activeFilter = '*';
+      const portfolioSearchInput = select('#portfolio-search');
+      const portfolioSummary = select('#portfolio-summary');
+      const portfolioEmptyState = select('#portfolio-empty-state');
+      const portfolioItems = select('.portfolio-container .portfolio-item', true);
+      let searchDebounceTimer;
+
+      portfolioItems.forEach((item) => {
+        const image = item.querySelector('img');
+        const links = [...item.querySelectorAll('.portfolio-links a')].map((a) => a.getAttribute('title') || '');
+        const tokens = [item.className, item.textContent || '', image ? image.getAttribute('alt') || '' : '', ...links]
+          .join(' ')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .toLowerCase();
+        item.setAttribute('data-search', tokens);
+      });
+
+      const normalise = (value = '') => value.toLowerCase().trim();
+      const getSearchValue = () => normalise(portfolioSearchInput ? portfolioSearchInput.value : '');
+
+      const updatePortfolioSummary = (filteredCount = null) => {
+        if (!portfolioSummary) {
+          return;
+        }
+        const totalCount = portfolioContainer.querySelectorAll('.portfolio-item').length;
+        const visibleCount = filteredCount !== null ? filteredCount : totalCount;
+        portfolioSummary.textContent = `Showing ${visibleCount} of ${totalCount} projects`;
+      };
+
+      const applyPortfolioFilters = () => {
+        const searchValue = getSearchValue();
+        portfolioIsotope.arrange({
+          filter: (itemElem) => {
+            const matchesCategory = activeFilter === '*' || itemElem.matches(activeFilter);
+            if (!matchesCategory) {
+              return false;
+            }
+            if (!searchValue) {
+              return true;
+            }
+            return normalise(itemElem.getAttribute('data-search') || '').includes(searchValue);
+          }
+        });
+      };
 
       on('click', '#portfolio-flters li', function(e) {
         e.preventDefault();
@@ -176,14 +221,29 @@
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
+        activeFilter = this.getAttribute('data-filter');
 
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
+        applyPortfolioFilters();
       }, true);
+
+      if (portfolioSearchInput) {
+        on('input', '#portfolio-search', () => {
+          clearTimeout(searchDebounceTimer);
+          searchDebounceTimer = setTimeout(() => {
+            applyPortfolioFilters();
+          }, 120);
+        });
+      }
+
+      portfolioIsotope.on('arrangeComplete', function(filteredItems) {
+        updatePortfolioSummary(filteredItems.length);
+        if (portfolioEmptyState) {
+          portfolioEmptyState.classList.toggle('d-none', filteredItems.length !== 0);
+        }
+        AOS.refresh();
+      });
+      applyPortfolioFilters();
+      updatePortfolioSummary();
     }
 
   });
