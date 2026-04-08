@@ -489,12 +489,8 @@ section {
 }
 
 .about .about-closing {
-  position: absolute;
-  top: 18px;
-  right: -30px;
-  z-index: 2;
-  max-width: min(340px, 88%);
-  margin: 0;
+  position: relative;
+  margin: 16px 0 0;
   padding: 16px 18px 16px 22px;
   background: rgba(255, 255, 255, 0.96);
   border-left: 4px solid #149ddd;
@@ -513,13 +509,6 @@ section {
   font-size: 34px;
   line-height: 1;
   color: #149ddd;
-  margin-top: 24px;
-  padding: 16px 18px;
-  border-left: 4px solid #149ddd;
-  background: #ffffff;
-  border-radius: 8px;
-  line-height: 1.7;
-  color: #1d3557;
 }
 
 @media (max-width: 991px) {
@@ -541,10 +530,7 @@ section {
   }
 
   .about .about-closing {
-    right: 10px;
-    top: auto;
-    bottom: 12px;
-    max-width: calc(100% - 20px);
+    max-width: 100%;
     padding: 12px 14px 12px 18px;
     font-size: 0.92rem;
     line-height: 1.55;
@@ -580,12 +566,7 @@ section {
   }
 
   .about .about-closing {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    top: -24px;
-    margin: 0 10px -8px;
-    max-width: calc(100% - 20px);
+    margin-top: 12px;
   }
 }
 
@@ -832,10 +813,6 @@ padding-bottom: 30px;
 @media (min-width: 992px) {
   .resume-column-content.is-collapsed {
     max-height: 980px;
-  }
-
-  .resume-columns {
-    gap: 24px;
   }
 }
 
