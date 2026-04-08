@@ -814,10 +814,6 @@ padding-bottom: 30px;
   .resume-column-content.is-collapsed {
     max-height: 980px;
   }
-
-  .resume-columns {
-    gap: 24px;
-  }
 }
 
 @media (max-width: 767px) {
