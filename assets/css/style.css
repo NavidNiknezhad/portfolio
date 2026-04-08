@@ -456,7 +456,7 @@ section {
   margin-bottom: 12px;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0;
   line-height: 1.65;
   border-left: 3px solid rgba(20, 157, 221, 0.2);
   padding: 8px 0 8px 10px;
@@ -467,8 +467,10 @@ section {
 .about .content ul strong {
   display: flex;
   text-align: left;
-  min-width: 130px;
+  min-width: auto;
+  margin-right: 6px;
   color: #0f2748;
+  white-space: nowrap;
 }
 
 .about .content ul span {
@@ -525,10 +527,6 @@ section {
     line-height: 1.65;
   }
 
-  .about .content ul strong {
-    min-width: 105px;
-  }
-
   .about .about-closing {
     max-width: 100%;
     padding: 12px 14px 12px 18px;
@@ -554,11 +552,7 @@ section {
 
   .about .content ul li {
     padding-left: 8px;
-    gap: 6px;
-  }
-
-  .about .content ul strong {
-    min-width: 92px;
+    gap: 0;
   }
 
   .about .about-media {
